@@ -5,4 +5,7 @@
  */
 export {default as Navbar} from './navbar'
 export {default as UserHome} from './user-home'
+export {default as Landing} from './Landing'
+export {default as Notes} from './Notes'
+export {default as SingleNote} from './SingleNote'
 export {Login, Signup} from './auth-form'
