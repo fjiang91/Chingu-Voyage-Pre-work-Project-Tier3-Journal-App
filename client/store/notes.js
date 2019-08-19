@@ -19,9 +19,9 @@ const getAllNotes = notes => ({type: GET_ALL_NOTES, notes})
 /**
  * THUNK CREATORS
  */
-export const getAllNotesThunk = () => async dispatch => {
+export const getAllNotesThunk = userId => async dispatch => {
   try {
-    let {data} = await axios.get('/api/notes/')
+    let {data} = await axios.get(`/api/notes/user/${userId}`)
     dispatch(getAllNotes(data))
   } catch (err) {
     console.error(err)
