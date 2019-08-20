@@ -1,5 +1,5 @@
 import React from 'react'
-import SingleNote from './SingleNote'
+import {SingleNote, NewNote} from './'
 import {connect} from 'react-redux'
 import {getAllNotesThunk} from '../store/notes'
 
@@ -12,6 +12,7 @@ class Notes extends React.Component {
     return (
       <div>
         Journal Page
+        <NewNote />
         {notes.length > 0 ? (
           <div className="card-columns">
             {notes.map(note => <SingleNote key={note.id} note={note} />)}
