@@ -1,5 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
+import {addNewNoteThunk} from '../store/notes'
 
 class NewNote extends React.Component {
   constructor(props) {
@@ -11,17 +12,24 @@ class NewNote extends React.Component {
   }
 
   handleOnChange = event => {
-    console.log(event.target.name)
-    this.setState = {
-      [event.target.name]: event.target.value
+    this.setState({[event.target.name]: event.target.value})
+  }
+
+  handleAddNewNote = event => {
+    event.preventDefault()
+    let userId = this.props.userId
+    let newNote = {
+      ...this.state,
+      userId
     }
+    this.props.addNewNote(newNote)
   }
 
   render() {
     const {title, content} = this.state
-    const {handleOnChange} = this
+    const {handleOnChange, handleAddNewNote} = this
     return (
-      <form>
+      <form onSubmit={handleAddNewNote}>
         <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
@@ -37,8 +45,7 @@ class NewNote extends React.Component {
         </div>
         <div className="form-group">
           <label htmlFor="content">Content</label>
-          <input
-            type="textarea"
+          <textarea
             className="form-control"
             id="content"
             name="content"
@@ -62,7 +69,9 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => {
-  return {}
+  return {
+    addNewNote: newNote => dispatch(addNewNoteThunk(newNote))
+  }
 }
 
 export default connect(mapState, mapDispatch)(NewNote)
