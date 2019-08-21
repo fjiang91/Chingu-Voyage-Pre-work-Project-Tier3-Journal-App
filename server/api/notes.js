@@ -16,11 +16,23 @@ router.get('/', async (req, res, next) => {
 })
 
 //Get a Single Note by ID
-router.get('/:noteId', async (req, res, next) => {
+router.get('/user/:userId/:noteId', async (req, res, next) => {
   try {
     const singleNote = await Note.findByPk(req.params.noteId)
 
     res.status(201).json(singleNote)
+  } catch (error) {
+    console.log('TCL: error', error)
+  }
+})
+
+//Delete a Single Note by ID
+router.delete('/user/:userId/:noteId', async (req, res, next) => {
+  try {
+    await Note.destroy({
+      where: {id: req.params.noteId}
+    })
+    res.status(201).json('Note Deleted')
   } catch (error) {
     console.log('TCL: error', error)
   }

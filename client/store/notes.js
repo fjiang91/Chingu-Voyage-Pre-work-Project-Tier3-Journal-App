@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_ALL_NOTES = 'GET_ALL_NOTES'
 const ADD_NOTE = 'ADD_NOTE'
+const DELETE_NOTE = 'DELETE_NOTE'
 
 /**
  * INITIAL STATE
@@ -20,6 +21,11 @@ const getAllNotes = notes => ({type: GET_ALL_NOTES, notes})
 const addNote = newNote => ({
   type: ADD_NOTE,
   newNote
+})
+
+const deleteNote = noteId => ({
+  type: DELETE_NOTE,
+  noteId
 })
 
 /**
@@ -47,6 +53,15 @@ export const addNewNoteThunk = newNote => async dispatch => {
   }
 }
 
+export const deleteNoteThunk = (userId, noteId) => async dispatch => {
+  try {
+    await axios.delete(`api/notes/user/${userId}/${noteId}`)
+    dispatch(deleteNote(noteId))
+  } catch (error) {
+    console.log('TCL: error', error)
+  }
+}
+
 /**
  * REDUCER
  */
@@ -56,6 +71,8 @@ export default function(state = defaultNotes, action) {
       return action.notes
     case ADD_NOTE:
       return [...state, action.newNote]
+    case DELETE_NOTE:
+      return state.filter(note => note.id !== action.noteId)
     default:
       return state
   }

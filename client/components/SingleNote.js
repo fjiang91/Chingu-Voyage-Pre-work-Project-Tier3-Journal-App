@@ -1,7 +1,7 @@
 import React from 'react'
 
 const SingleNote = props => {
-  const note = props.note
+  const {note, userId, handleDeleteNote} = props
   return (
     <div className="card text-white bg-dark mb-3 darkCard">
       <div className="card-body">
@@ -13,7 +13,10 @@ const SingleNote = props => {
         <a href="#" className="card-link">
           Edit Card
         </a>
-        <a href="#" className="card-link">
+        <a
+          onClick={event => handleDeleteNote(event, userId, note.id)}
+          className="card-link"
+        >
           Delete Card
         </a>
       </div>
