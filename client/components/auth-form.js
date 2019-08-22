@@ -42,12 +42,12 @@ const AuthForm = props => {
               Create Account
             </Link>
           )}
-          <Link
-            to="/auth/google"
+          <a
+            href="/auth/google"
             className={name === 'login' ? 'col-6' : 'col-12'}
           >
             {displayName} with Google
-          </Link>
+          </a>
         </div>
       </form>
     </div>

@@ -35,7 +35,7 @@ class Notes extends React.Component {
             ))}
           </div>
         ) : (
-          <div>Notes Loading</div>
+          <div>No Notes Available/Notes Loading</div>
         )}
       </div>
     )
