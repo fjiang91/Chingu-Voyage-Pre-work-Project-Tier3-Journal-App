@@ -5751,6 +5751,7 @@ a.badge-dark.focus {
 
 .jumbotron {
   padding: 2rem 1rem;
+  margin-top: 2rem;
   margin-bottom: 2rem;
   background-color: #ecf0f1;
   border-radius: 0.3rem;
@@ -11178,11 +11179,21 @@ a.text-dark:focus {
 
 nav a {
   display: inline-block;
-  margin: 1em;
+  margin: 0.5rem;
+  color: white;
 }
 
-.darkCard {
-  max-width: 18rem;
+nav a:hover {
+  color: red;
+}
+
+.allNotes {
+  grid-template-columns: auto auto auto;
+}
+
+.noteContainer {
+  display: grid;
+  grid-gap: 20px;
 }
 
 .createNote {
@@ -11220,4 +11231,16 @@ nav a {
 .auth-form .btn {
   font-size: 15px;
   font-weight: bold;
+}
+
+@media only screen and (max-width: 1000px) {
+  .allNotes {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .allNotes {
+    grid-template-columns: auto;
+  }
 }

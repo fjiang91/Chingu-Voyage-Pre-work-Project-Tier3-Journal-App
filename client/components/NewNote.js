@@ -23,6 +23,10 @@ class NewNote extends React.Component {
       userId
     }
     this.props.addNewNote(newNote)
+    this.setState({
+      title: '',
+      content: ''
+    })
   }
 
   render() {

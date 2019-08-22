@@ -24,7 +24,7 @@ class Notes extends React.Component {
           <NewNote />
         </div>
         {notes.length > 0 ? (
-          <div className="card-columns d-flex row displayNotes">
+          <div className="card-columns allNotes noteContainer">
             {notes.map(note => (
               <SingleNote
                 key={note.id}

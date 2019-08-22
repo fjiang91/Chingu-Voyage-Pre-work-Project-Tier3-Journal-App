@@ -2,9 +2,9 @@ import React from 'react'
 
 const Landing = props => {
   return (
-    <div>
-      Welcome to your personal journal app. Please login to log your journal
-      notes.
+    <div className="jumbotron">
+      <h1 className="display-3">Journal App</h1>
+      <p className="lead">Please login to log/create your Digital Journal.</p>
     </div>
   )
 }
