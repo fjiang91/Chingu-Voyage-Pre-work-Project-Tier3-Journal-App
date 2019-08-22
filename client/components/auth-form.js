@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -10,26 +11,45 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div>
+    <div className="auth-form">
       <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
+        <h2 className="text-center">{displayName}</h2>
+        <div className="form-group">
+          <input
+            name="email"
+            type="text"
+            className="form-control"
+            placeholder="Email"
+          />
         </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
+        <div className="form-group">
+          <input
+            name="password"
+            type="password"
+            className="form-control"
+            placeholder="Password"
+          />
         </div>
-        <div>
-          <button type="submit">{displayName}</button>
+        <div className="form-group">
+          <button type="submit" className="btn btn-primary btn-block">
+            {displayName}
+          </button>
         </div>
         {error && error.response && <div> {error.response.data} </div>}
+        <div className="d-flex row">
+          {name === 'login' && (
+            <Link to="/auth/google" className="col-6">
+              Create Account
+            </Link>
+          )}
+          <Link
+            to="/auth/google"
+            className={name === 'login' ? 'col-6' : 'col-12'}
+          >
+            {displayName} with Google
+          </Link>
+        </div>
       </form>
-      <a href="/auth/google">{displayName} with Google</a>
     </div>
   )
 }

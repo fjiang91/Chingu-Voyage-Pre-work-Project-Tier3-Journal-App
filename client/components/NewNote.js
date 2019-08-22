@@ -29,7 +29,7 @@ class NewNote extends React.Component {
     const {title, content} = this.state
     const {handleOnChange, handleAddNewNote} = this
     return (
-      <form onSubmit={handleAddNewNote}>
+      <form className="form form-horizontal" onSubmit={handleAddNewNote}>
         <div className="form-group">
           <label htmlFor="title">Title:</label>
           <input
