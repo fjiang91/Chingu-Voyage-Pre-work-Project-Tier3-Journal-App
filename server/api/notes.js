@@ -16,11 +16,36 @@ router.get('/', async (req, res, next) => {
 })
 
 //Get a Single Note by ID
-router.get('/:noteId', async (req, res, next) => {
+router.get('/user/:userId/:noteId', async (req, res, next) => {
   try {
     const singleNote = await Note.findByPk(req.params.noteId)
-
     res.status(201).json(singleNote)
+  } catch (error) {
+    console.log('TCL: error', error)
+  }
+})
+
+//Update A Single Note By ID
+router.put('/user/:userId/:noteId', async (req, res, next) => {
+  try {
+    const [numberOfAffectedRows, affectedRows] = await Note.update(req.body, {
+      where: {id: +req.params.noteId},
+      returning: true,
+      plain: true
+    })
+    res.json(affectedRows)
+  } catch (error) {
+    console.log('TCL: router.put -> error', error)
+  }
+})
+
+//Delete a Single Note by ID
+router.delete('/user/:userId/:noteId', async (req, res, next) => {
+  try {
+    await Note.destroy({
+      where: {id: req.params.noteId}
+    })
+    res.status(201).json('Note Deleted')
   } catch (error) {
     console.log('TCL: error', error)
   }

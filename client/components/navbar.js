@@ -29,7 +29,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
   //   </div>
   // </nav>
   <div>
-    <nav className="navbar navbar-dark bg-dark">
+    <nav className="navbar">
       <Link to="/">
         <h2>Journal App</h2>
       </Link>
