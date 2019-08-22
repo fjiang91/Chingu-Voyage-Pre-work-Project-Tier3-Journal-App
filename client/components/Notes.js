@@ -16,14 +16,15 @@ class Notes extends React.Component {
     const {notes, userId} = this.props
     const {handleDeleteNote} = this
     return (
-      <div className="container">
-        <div>
-          <h4 className="display-4">Digital Journal | </h4>
-          <h6>Create A Note</h6>
+      <div className="container-fluid">
+        <div className="createNote">
+          <div className="h3">
+            Digital Journal | <span className="text-muted">Create A Note</span>
+          </div>
+          <NewNote />
         </div>
-        <NewNote />
         {notes.length > 0 ? (
-          <div className="card-columns">
+          <div className="card-columns allNotes noteContainer">
             {notes.map(note => (
               <SingleNote
                 key={note.id}
@@ -34,7 +35,7 @@ class Notes extends React.Component {
             ))}
           </div>
         ) : (
-          <div>Notes Loading</div>
+          <div>No Notes Available/Notes Loading</div>
         )}
       </div>
     )
