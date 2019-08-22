@@ -6,7 +6,9 @@ import history from '../history'
  */
 const GET_ALL_NOTES = 'GET_ALL_NOTES'
 const ADD_NOTE = 'ADD_NOTE'
+const UPDATE_SINGLE_NOTE = 'UPDATE_SINGLE_NOTE'
 const DELETE_NOTE = 'DELETE_NOTE'
+const GET_SINGLE_NOTE = 'GET_SINGLE_NOTE'
 
 /**
  * INITIAL STATE
@@ -18,6 +20,12 @@ const defaultNotes = []
  */
 const getAllNotes = notes => ({type: GET_ALL_NOTES, notes})
 
+const getSingleNote = note => ({type: GET_SINGLE_NOTE, note})
+
+const updateSingleNote = note => ({
+  type: UPDATE_SINGLE_NOTE,
+  note
+})
 const addNote = newNote => ({
   type: ADD_NOTE,
   newNote
@@ -37,6 +45,32 @@ export const getAllNotesThunk = userId => async dispatch => {
     dispatch(getAllNotes(data))
   } catch (err) {
     console.error(err)
+  }
+}
+
+export const getSingleNoteThunk = (userId, noteId) => async dispatch => {
+  try {
+    let {data} = await axios.get(`/api/notes/user/${userId}/${noteId}`)
+    dispatch(getSingleNote(data))
+  } catch (error) {
+    console.log('TCL: error', error)
+  }
+}
+
+export const updateSingleNoteThunk = (
+  userId,
+  noteId,
+  newNote
+) => async dispatch => {
+  try {
+    let {data} = await axios.put(`/api/notes/user/${userId}/${noteId}`, {
+      title: newNote.title,
+      content: newNote.content
+    })
+    dispatch(updateSingleNote(data))
+    history.push('/notes')
+  } catch (error) {
+    console.log('TCL: error', error)
   }
 }
 
@@ -69,6 +103,8 @@ export default function(state = defaultNotes, action) {
   switch (action.type) {
     case GET_ALL_NOTES:
       return action.notes
+    case GET_SINGLE_NOTE:
+      return [action.note]
     case ADD_NOTE:
       return [...state, action.newNote]
     case DELETE_NOTE:

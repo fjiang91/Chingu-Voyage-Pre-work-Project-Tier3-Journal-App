@@ -1,4 +1,5 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 const SingleNote = props => {
   const {note, userId, handleDeleteNote} = props
@@ -10,15 +11,24 @@ const SingleNote = props => {
         <p className="card-text">
           <small className="text-muted">{note.updatedAt}</small>
         </p>
-        <a href="#" className="card-link">
-          Edit Card
-        </a>
-        <a
-          onClick={event => handleDeleteNote(event, userId, note.id)}
-          className="card-link"
-        >
-          Delete Card
-        </a>
+        <div className="row justify-content-around">
+          <div className="col-4">
+            <Link to={`/notes/${userId}/${note.id}`} className="card-link">
+              <button type="button" className="btn btn-outline-success">
+                Edit Card
+              </button>
+            </Link>
+          </div>
+          <div className="col-4">
+            <button
+              type="button"
+              className="btn btn-outline-danger "
+              onClick={event => handleDeleteNote(event, userId, note.id)}
+            >
+              Delete Card
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   )

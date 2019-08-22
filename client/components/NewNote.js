@@ -41,6 +41,7 @@ class NewNote extends React.Component {
             onChange={handleOnChange}
             value={title}
             placeholder="Enter Title"
+            required
           />
         </div>
         <div className="form-group">
@@ -52,6 +53,7 @@ class NewNote extends React.Component {
             value={content}
             onChange={handleOnChange}
             placeholder="Enter Content"
+            required
           />
         </div>
         <button type="submit" className="btn btn-primary">

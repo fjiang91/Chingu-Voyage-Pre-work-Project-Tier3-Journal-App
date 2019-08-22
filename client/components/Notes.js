@@ -16,8 +16,11 @@ class Notes extends React.Component {
     const {notes, userId} = this.props
     const {handleDeleteNote} = this
     return (
-      <div>
-        Journal Page
+      <div className="container">
+        <div>
+          <h4 className="display-4">Digital Journal | </h4>
+          <h6>Create A Note</h6>
+        </div>
         <NewNote />
         {notes.length > 0 ? (
           <div className="card-columns">
