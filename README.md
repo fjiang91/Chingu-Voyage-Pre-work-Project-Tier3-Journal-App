@@ -23,11 +23,11 @@ This Journal App is created for Chingu Voyage 11 pre-work. It is a Full Stack ap
 4.  Update project name and description in `package.json`
 5.  Create two postgres databases (`MY_APP_NAME` should match the `name`
     parameter in `package.json`)
-6.  Run npm run seed your bash/command line to populate database with tables and sample users
+6.  Run npm run seed in your bash/command line to populate database with tables and sample users
 7.  Run npm run start-dev to launch the app
 8.  Browser to localhost:8080 to view the app
 
-## Tech Used / Dependencies
+## Tech Used / Dependencies / Boilerplate
 
 * Node, Express, Sequelize - Backend
 * React, Redux, React-Router - Frontend
