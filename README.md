@@ -4,7 +4,7 @@
 
 This Journal App is created for Chingu Voyage 11 pre-work. It is a Full Stack application/Journal App that lets you login and create/log your digital journal.
 
-#### View App: http://chingu-prework-journalapp.herokuapp.com/notes
+#### View App: http://chingu-prework-journalapp.herokuapp.com/
 
 ## Features
 
