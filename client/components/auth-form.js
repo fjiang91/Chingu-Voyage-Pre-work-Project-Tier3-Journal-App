@@ -37,16 +37,17 @@ const AuthForm = props => {
         </div>
         {error && error.response && <div> {error.response.data} </div>}
         <div className="d-flex row">
-          {name === 'login' && (
-            <Link to="/auth/google" className="col-6">
+          {name === 'login' ? (
+            <Link to="/signup" className="col-6">
               Create Account
             </Link>
+          ) : (
+            <Link to="/login" className="col-6">
+              Login
+            </Link>
           )}
-          <a
-            href="/auth/google"
-            className={name === 'login' ? 'col-6' : 'col-12'}
-          >
-            {displayName} with Google
+          <a href="/auth/google" className="col-6">
+            Google {displayName}
           </a>
         </div>
       </form>
